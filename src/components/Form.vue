@@ -1,6 +1,7 @@
 <!-- Form.vue -->
 <script setup lang="ts">
 import { ref, watch, defineProps, defineEmits } from 'vue'
+// import type { Task } from '@/components/KanbanBoard.vue'
 
 const props = defineProps<{ 
   id?: string,
@@ -10,8 +11,8 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (event: 'submit-task', task: { title: string; body: string }): void;
-  (event: 'submit-edit', task: { id: string; title: string; body: string }): void;
+  (event: 'submit-task', data: { title: string; body: string }): void;
+  (event: 'submit-edit', data: { id: string; title: string; body: string }): void;
 }>()
 
 const formTitle = ref(props.title || '')

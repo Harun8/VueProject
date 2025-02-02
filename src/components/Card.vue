@@ -15,15 +15,22 @@ defineProps<{ tasks: Task[]; newTask: boolean, isEdit:boolean }>();
 const currentTask = ref<Task | null>(null);  
 
 const emit = defineEmits<{
-  (event: "submit-task", task: Task): void;
-  (event: "click-task", task: Task): void;
+  (event: 'submit-task', data: { title: string; body: string }): void;
+  (event: 'click-task', task: Task): void;
 //   (event: "submit-edit", task: Task): void;
 }>();
 
 
-const addTask = (task: Task)  => {
-  console.log("Adding task:", task);
-  emit("submit-task", task); 
+const addTask = (payload: { title: string; body: string }) => {
+  // Create a full Task here
+  const newTask: Task = {
+    id: crypto.randomUUID(),
+    title: payload.title,
+    body: payload.body
+  }
+  // Then do something with it...
+  console.log("Adding task:", newTask);
+  emit("submit-task", newTask); // if you want to bubble up a full Task
 }
 const drag = (task: Task, event: DragEvent) => {
   event.dataTransfer?.setData("task", JSON.stringify(task));
@@ -40,10 +47,10 @@ const editTask = (task: Task) => {
 
 <template>
   <div v-if="newTask">
-    <Form @submit-task="addTask" />
+    <Form :isEdit="isEdit" @submit-task="addTask" />
   </div>
   <div v-if="isEdit && currentTask">
-    <Form :title="currentTask.title" :body="currentTask.body" :isEdit="isEdit" @submit-task="addTask" />
+    <Form  :title="currentTask.title" :body="currentTask.body" :isEdit="isEdit" @submit-task="addTask" />
   </div>
 
 
@@ -58,7 +65,7 @@ const editTask = (task: Task) => {
           :title="task.title"
           link
           > 
-          <v-btn @click="() => editTask(task)" density="comp act" icon="$vuetify"></v-btn>
+          <v-btn @click="() => editTask(task)" density="compact" icon="$vuetify"></v-btn>
         </v-card>
           
         </li>
