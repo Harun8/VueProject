@@ -25,7 +25,7 @@ Lav et view med følgende funktionalitet:
 Jeg greb projektet an, som jeg ville gribe et ReactJs-projekt an, og forsøgt at tackle det på en relativt komponentbaseret måde, hvilket kan ses med KanbanBoard, Board, Card og Form-komponenterne. Jeg har inddraget separation of concerns, hvor hver komponent har sit eget fokusområde:
 
 - KanbanBoard.vue håndterer den globale opgaveliste og tager sig af overordnet logik, såsom at tilføje, redigere, slette og fordele opgaver på de forskellige boards.
-- Board.vue fokuserer på at renderer opgaverne i én specifik kolonne og at håndtere forms og drag-and-drop funktionalitet.
+- Board.vue fokuserer på at rendere opgaverne i én specifik kolonne og at håndtere forms og drag-and-drop funktionalitet.
 - Form.vue har udelukkende fokus på at oprette eller redigere nye opgaver.
 
 
