@@ -1,39 +1,37 @@
-# package.json
+# Vue project [FysioFresh]
 
-This template should help get you started developing with Vue 3 in Vite.
+[Link til opgaven](https://harun8-github-io.vercel.app/)
 
-## Recommended IDE Setup
+# Opgavebeskrivelse:
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Lav et view med følgende funktionalitet:
+1. Et kanban-board med forskellige statuskolonner.
+2. Forskellige kort, som kan trækkes fra en statuskolonne til en anden.
+3. Hvert kort skal indeholde en titel og en beskrivelse.
+4. Det skal være muligt at tilføje, redigere og slette kort.
 
-## Type Support for `.vue` Imports in TS
+## Hvad har jeg brugt
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Vue 3
+- Vuetify hvor det gav mening såsom ved Form, Card
+- Composition API
+- TypeScript
+- TailwindCSS
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Tankegang
 
-## Project Setup
 
-```sh
-npm install
-```
+Jeg greb projektet an, som jeg ville gribe et ReactJs-projekt an, og forsøgt at tackle det på en relativt komponentbaseret måde, hvilket kan ses med KanbanBoard, Board, Card og Form-komponenterne. Jeg har inddraget separation of concerns, hvor hver komponent har sit eget fokusområde:
 
-### Compile and Hot-Reload for Development
+- KanbanBoard.vue håndterer den globale opgaveliste og tager sig af overordnet logik, såsom at tilføje, redigere, slette og fordele opgaver på de forskellige boards.
+- Board.vue fokuserer på at rendere opgaverne i én specifik kolonne og at håndtere forms og drag-and-drop funktionalitet.
+- Form.vue har udelukkende fokus på at oprette eller redigere nye opgaver.
 
-```sh
-npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
+### Mulige forbedringer
 
-```sh
-npm run build
-```
+Det kan diskuteres, at Board.vue måske håndterer lidt for meget logik, og at man kunne overveje at flytte drag-and-drop-logikken til en separat utility-funktion.
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-```sh
-npm run test:unit
-```
+
