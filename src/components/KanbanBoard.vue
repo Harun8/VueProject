@@ -26,7 +26,6 @@ const tasksByBoard = (board: number) =>
 const handleTaskAdded = (newTask: { title: string; body: string; board: number }) =>  {
   const taskWithId: Task = { ...newTask, id: uuidv4() }
   tasks.value.push(taskWithId)
-  console.log('New task added:', taskWithId)
 }
 
 
@@ -37,7 +36,6 @@ const handleTaskEdited =(updatedTask: { id: string; title: string; body: string;
   // redundant if statement, kan fjernes i dette tilfælde
   if (index !== -1) {
     tasks.value[index] = updatedTask
-    console.log('Task updated:', updatedTask)
   }
 }
 
@@ -46,13 +44,11 @@ const updateTaskBoard = (taskId: string, newBoard: number) => {
   const task = tasks.value.find(t => t.id === taskId)
   if (task) {
     task.board = newBoard
-    console.log(`Task ${taskId} moved to board ${newBoard}`)
   }
 }
 
 const handleTaskDeleted = (taskId: string) => {
   tasks.value = tasks.value.filter(task => task.id !== taskId)
-  console.log(`Task ${taskId} deleted`)
 }
 </script>
 

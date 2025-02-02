@@ -2,9 +2,9 @@
 import Form from "@/components/Form.vue";
 import { defineProps, defineEmits, ref } from "vue";
 
-// Define Task type
+
 type Task = {
-    id: string;   // Unique identifier for the task
+    id: string;   
   title: string;
   body: string;
 };
@@ -22,22 +22,19 @@ const emit = defineEmits<{
 
 
 const addTask = (payload: { title: string; body: string }) => {
-  // Create a full Task here
   const newTask: Task = {
     id: crypto.randomUUID(),
     title: payload.title,
     body: payload.body
   }
-  // Then do something with it...
-  console.log("Adding task:", newTask);
-  emit("submit-task", newTask); // if you want to bubble up a full Task
+
+  emit("submit-task", newTask); 
 }
 const drag = (task: Task, event: DragEvent) => {
   event.dataTransfer?.setData("task", JSON.stringify(task));
 }
 
 const editTask = (task: Task) => {
-    console.log("edit task:", task);
     currentTask.value = task;  
 
     emit("click-task", task); 
